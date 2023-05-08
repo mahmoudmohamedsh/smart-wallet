@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 require('dotenv/config');
 const userRoutes = require('./routers/userRouter');
+const paymentRouter = require('./routers/paymentRouter');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 
 app.use(bodyparser.json());//express.json()
 
 app.use('/auth',userRoutes);
+app.use('/payment',paymentRouter);
 
 
 app.use((err,req,res,next)=>{
