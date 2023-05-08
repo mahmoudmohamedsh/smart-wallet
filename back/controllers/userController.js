@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const Otp = require('../models/otpModel');
 const jwt = require('jsonwebtoken');
 const otpGenerator = require('otp-generator');
+require('dotenv/config');
 
 
 exports.signinVerify = (req,res,next)=>{
@@ -122,8 +123,8 @@ exports.signin = (req,res,next)=>{
         const token = jwt.sign({
             email:loadedUser.email,
             userId:loadedUser._id
-        },'secrit',{expiresIn:'1h'});
-
+        },process.env.SECRET,{expiresIn:'1h'});
+        console.log(process.env.SECRET)
         res.status(200).json({token:token,userId:loadedUser._id.toString()});
     })
     .catch(err => {
