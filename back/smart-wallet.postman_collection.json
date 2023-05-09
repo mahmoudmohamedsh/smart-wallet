@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "99444e08-20ba-4bf8-b965-e10b7037e172",
+		"_postman_id": "ed991dbd-5d4e-4b0d-90d2-34ba0af5f2f9",
 		"name": "smart-wallet",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "user",
 			"item": [
 				{
-					"name": "http://localhost:8080/auth/signin",
+					"name": "signin",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -38,7 +38,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/auth/signup",
+					"name": "signup",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -67,7 +67,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/auth/signupVerify",
+					"name": "signupVerify",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -90,6 +90,145 @@
 							"path": [
 								"auth",
 								"signupVerify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addChild",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidXNlcklkIjoiNjQ1ODdlNGYwYTYxZmI5Zjc2ZDZhZGU5IiwiaWF0IjoxNjgzNjUwOTY5LCJleHAiOjE2ODM2NTQ1Njl9.NrSiXwR0s524L0Ae_u4LKTOkFPnmNPBhE5Vwv3vjIQk",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"tesqt@test.com\",\r\n    \"password\":\"12345\",\r\n    \"name\":\"mahmoud\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/addChild",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"addChild"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReq",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidXNlcklkIjoiNjQ1ODdlNGYwYTYxZmI5Zjc2ZDZhZGU5IiwiaWF0IjoxNjgzNjUwOTY5LCJleHAiOjE2ODM2NTQ1Njl9.NrSiXwR0s524L0Ae_u4LKTOkFPnmNPBhE5Vwv3vjIQk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/auth/getReq",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"getReq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getChild",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidXNlcklkIjoiNjQ1ODdlNGYwYTYxZmI5Zjc2ZDZhZGU5IiwiaWF0IjoxNjgzNjUwOTY5LCJleHAiOjE2ODM2NTQ1Njl9.NrSiXwR0s524L0Ae_u4LKTOkFPnmNPBhE5Vwv3vjIQk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/auth/getChild",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"getChild"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getHistory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidXNlcklkIjoiNjQ1ODdlNGYwYTYxZmI5Zjc2ZDZhZGU5IiwiaWF0IjoxNjgzNjUwOTY5LCJleHAiOjE2ODM2NTQ1Njl9.NrSiXwR0s524L0Ae_u4LKTOkFPnmNPBhE5Vwv3vjIQk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/auth/getHis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"getHis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidXNlcklkIjoiNjQ1ODdlNGYwYTYxZmI5Zjc2ZDZhZGU5IiwiaWF0IjoxNjgzNjU4MjY0LCJleHAiOjE2ODM2NjE4NjR9.Zj6kDiYkPaIhSIiLxVz-t1tdvBiQrViN-4P5f2NEPho",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/auth/getUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"getUser"
 							]
 						}
 					},

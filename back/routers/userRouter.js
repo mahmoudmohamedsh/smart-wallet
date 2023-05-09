@@ -58,5 +58,7 @@ router.post('/addChild', isAuth,[
         })
     }).normalizeEmail()
 ],userController.addChild);
+//auth/getUser
+router.post('/getUser', isAuth,userController.getUserData);
 
 module.exports = router;

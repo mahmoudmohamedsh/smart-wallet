@@ -78,3 +78,10 @@ Source: Conversation with Bing, 5/6/2023(1) Getting Started with MongoDB & Mongo
 https://splunktool.com/find-with-array-of-ids-in-mongoose
 
 ---
+
+https://stackoverflow.com/questions/7382207/mongooses-find-method-with-or-condition-does-not-work-properly
+
+
+---
+
+https://stackoverflow.com/questions/12096262/how-to-protect-the-password-field-in-mongoose-mongodb-so-it-wont-return-in-a-qu
