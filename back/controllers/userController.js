@@ -134,3 +134,9 @@ exports.signin = (req,res,next)=>{
         next(err);
     })
 }
+
+exports.getReq = (req,res,next)=>{}
+
+exports.getChild = (req,res,next)=>{}
+
+exports.handleReq= (req,res,next)=>{}
