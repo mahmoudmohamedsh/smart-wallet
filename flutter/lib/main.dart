@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:orange_project/view/auth/login_screen.dart';
+import 'package:orange_project/view/auth/otp_screen.dart';
+import 'package:orange_project/view/auth/register_screen.dart';
 import 'package:orange_project/view/bill_view.dart';
 import 'package:orange_project/view/home_view.dart';
 import 'package:orange_project/view/layout_view.dart';
 import 'package:orange_project/view/splash_view.dart';
+
+import 'constant/constant.dart';
 
 
 void main() {
@@ -23,7 +27,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      theme: ThemeData(
+        primarySwatch:Colors.deepOrange,
+      ),
+      home: LoginScreen(),
     );
   }
 }
