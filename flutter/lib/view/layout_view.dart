@@ -40,7 +40,7 @@ List<Widget>screens=[
           ),
           BottomNavigationBarItem(
               icon:Icon(Icons.credit_card),
-              label: 'bill'
+              label: 'card'
           ),
           BottomNavigationBarItem(
               icon:Icon(Icons.history_outlined),

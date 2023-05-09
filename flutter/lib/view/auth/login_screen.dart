@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:orange_project/view/auth/register_screen.dart';
-
+import 'package:orange_project/view/home_view.dart';
+import 'package:orange_project/view_model/auth_view_model.dart';
 import '../../constant/constant.dart';
-import '../../view_model/auth_view_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-
 
 
   @override
@@ -19,18 +18,22 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isChecked = false;
-  var email = TextEditingController();
-  var password =TextEditingController();
+  late String email,password;
+  var response;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+
+          //background
           Container(
             width: double.infinity,
             height: double.infinity,
             child: Image.asset('assets/images/Splash1.png',fit: BoxFit.cover,),
           ),
+
+
           Center(
             child: SingleChildScrollView(
               child: Padding(
@@ -51,27 +54,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
 
 
+                     //fields
                      CustomFormField(
+                       functionchange: (value){
+                         setState(() {
+                           email=value;
+                         });
+                       },
 
                       title: 'Email',
                       hint: 'example@gmail.com',
-                       controller: email,
-                       saved: (value){
-                        print('value');
-                       },
+
                     ),
                     const SizedBox(
                       height: 12,
                     ),
                      CustomFormField(
+                       functionchange: (value){
+                         setState(() {
+                           password=value;
+                         });
+                       },
                       title: 'password',
                       hint: '**********',
-                       controller: password,
-                       saved: (value){
-                         print('value');
-                       },
                     ),
-
                     const SizedBox(
                       height: 8,
                     ),
@@ -99,19 +105,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 26,
                     ),
+
+
+                    //login button
                     CustomButton(
                       title: 'login',
-                      function: (){
+                      function: ()async{
                         print(email);
                         print(password);
-                        print('hello');
-                        signIn();
-                        print('hello22');
+                        response=await signIn(email,password);
+                        if(response != null){
+                          //print('wadyyyyy');
+                          print(response.toString());
+                          Get.to(HomeScreen());
+                        }
+                        else{
+                          print('invaled user information');
+                        }
+
+
                       },
                     ),
                     const SizedBox(
                       height: 8,
                     ),
+
+
+                    //forget password
                     Container(
                       alignment: Alignment.topRight,
                       child: const Text('Forget password?',style: TextStyle(
@@ -123,6 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 24,
                     ),
+
+                    // or option
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -148,6 +170,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 20,
                     ),
+
+
+
+                    //google option auth
                     TextButton(
                       onPressed: (){},
                       child: Container(
@@ -177,6 +203,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 10,
                     ),
+
+
+                    //create Account
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:  [
@@ -202,4 +231,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+
 }

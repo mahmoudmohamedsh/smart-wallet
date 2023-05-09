@@ -3,12 +3,16 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/constant.dart';
-const String BASE_URL = 'http://10.0.2.2:8080';
-Future<Response?> signIn() async {
+import '../resources/app_urls.dart';
+
+var baseUrl = AppUrl.baseUrl;
+
+// signIn method to enter user for application email and password
+Future<Response?> signIn(String email,String password) async {
   var dio = Dio();
   try {
-    var response = await dio.post('${BASE_URL}/auth/signin',
-        data: {"email": "test@test.com", "password": "12345"},
+    var response = await dio.post('${baseUrl}/auth/signin',
+        data: {"email": email, "password": password},
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -24,11 +28,13 @@ Future<Response?> signIn() async {
   return null;
 }
 
-Future<Response?> signupVerify() async {
+
+// signupVerify  method to verify user by email
+Future<Response?> signupVerify(String email) async {
   var dio = Dio();
   try {
-    var response = await dio.post('${BASE_URL}/auth/signupVerify',
-        data: {"email": "tes1t@test.com"},
+    var response = await dio.post('${baseUrl}/auth/signupVerify',
+        data: {"email": email},
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -44,15 +50,18 @@ Future<Response?> signupVerify() async {
   return null;
 }
 
-Future<Response?> signup() async {
+
+//signup method to create new user by name,email,password and otp
+
+Future<Response?> signup(String email,String password,otp,name) async {
   var dio = Dio();
   try {
-    var response = await dio.post('${BASE_URL}/auth/signup',
+    var response = await dio.post('${baseUrl}/auth/signup',
         data: {
-      "email": "tes1t@test.com",
-          "password": "12345",
-          "otp" : "522509",
-          "name" : "mahmoud"
+      "email": email,
+          "password": password,
+          "otp" : otp,
+          "name" : name
         },
         options: Options(
           headers: {
@@ -69,11 +78,16 @@ Future<Response?> signup() async {
   return null;
 }
 
+
+//payment method to another user
+
 Future<Response?> payment() async {
   var dio = Dio();
   try {
-    var response = await dio.post('${BASE_URL}/payment',
+    var response = await dio.post('${baseUrl}/payment',
         data: {
+
+
           "to":"test@test.com",
           "amount":90
         },
