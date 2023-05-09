@@ -75,3 +75,6 @@ Source: Conversation with Bing, 5/6/2023(1) Getting Started with MongoDB & Mongo
 ---
 
 
+https://splunktool.com/find-with-array-of-ids-in-mongoose
+
+---

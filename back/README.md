@@ -37,4 +37,40 @@ get
 
 ---
 
+http://localhost:8080/auth/addChild
+{ 
+    "email": "tesqt@test.com",
+    "password":"12345",
+    "name":"mahmoud"
+}
+
+
+{
+    "message": "user created successfully",
+    "userId": "64587e4f0a61fb9f76d6ade9"
+}
+
+---
+
+http://localhost:8080/auth/getChild
+
+{
+    "message": "success 1",
+    "data": [
+        "645a839b520015ed2569fb00"
+    ]
+}
+
+---
+
+http://localhost:8080/auth/getReq
+
+
+{
+    "message": "success",
+    "data": []
+}
+
+---
+
 /payment

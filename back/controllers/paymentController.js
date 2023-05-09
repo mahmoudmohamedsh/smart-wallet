@@ -61,6 +61,3 @@ exports.pay = (req, res, next) => {
         next(err)
     });
 }
-exports.userHis = (req, res, next) => {
-    
-}
