@@ -20,6 +20,8 @@ class NotificationView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+              //back button and title
               Row(
                 children: [
                   CustomIconButton(
@@ -32,20 +34,22 @@ class NotificationView extends StatelessWidget {
                   CustomText(title: 'Notification', fontSize: 20,),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
+
+              //Notification  today
               CustomText(title: 'Today', fontSize: 15),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               CustomRecentTransaction(
-                name: 'Karma ask you to recharge her wallet',
+                name: 'Abdo ask you to recharge her wallet',
                 time: '09:40',
                 image: 'assets/images/1.jpg',
                 price: '',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               CustomRecentTransaction(
@@ -54,11 +58,11 @@ class NotificationView extends StatelessWidget {
                 image: 'assets/images/1.jpg',
                 price: '',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 
-              // history
+              // history Notification
               Row(
                 children: [
                   CustomText(title: 'Yasterday', fontSize: 15),

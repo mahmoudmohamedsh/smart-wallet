@@ -19,159 +19,187 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
   bool isChecked = false;
 
-  late String name,email,password,confirmPassword,otp='106209';
+  late String name,email,password,confirmPassword,otp;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+
+          //background
           Container(
             width: double.infinity,
             height: double.infinity,
             child: Image.asset('assets/images/Splash1.png',fit: BoxFit.cover,),
           ),
+
+
           Center(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                    //Register
-                    const Center(
-                      child:  Text('Register',style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                      ),),
-                    ),
-
-
-                    //fields
-                    const SizedBox(
-                      height: 20,
-                    ),
-                     CustomFormField(
-                       functionchange: (value){
-                           name=value;
-                       },
-
-                       title: 'Name',
-                      hint: 'full nam',
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                     CustomFormField(
-                       functionchange: (value){
-                         email=value;
-                       },
-
-                       title: 'Email',
-                      hint: 'example@gmail.com',
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                     CustomFormField(
-                       functionchange: (value){
-                         password=value;
-                       },
-
-                       title: 'password',
-                      hint: '**********',
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                     CustomFormField(
-                       functionchange: (value){
-                         confirmPassword=value;
-                       },
-
-                       title: 'Confirm password',
-                      hint: '**********',
-                    ),
-
-
-                    //check box
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children:  [
-                          Checkbox(
-                              value: isChecked,
-                              fillColor: MaterialStateColor.resolveWith((states) => secondColor),
-                              onChanged: (value){
-                                setState(() {
-                                  isChecked=value!;
-                                });
-
-                              }),
-                          const Text('Accept Terms of Use & Privacy Policy',style: TextStyle(
-                            fontSize: 12,
+                      //Register
+                      const Center(
+                        child:  Text('Register',style: TextStyle(
+                            fontSize: 30,
                             color: Colors.white,
+                            fontWeight: FontWeight.bold
+                        ),),
+                      ),
 
+
+                      //fields
+                      const SizedBox(
+                        height: 20,
+                      ),
+                       CustomFormField(
+                         validate: (value){
+                           if (value == null || value.isEmpty) {
+                             return 'Please enter name';
+                           }
+                         },
+                         functionchange: (value){
+
+                             name=value;
+                         },
+
+                         title: 'Name',
+                        hint: 'full nam',
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                       CustomFormField(
+                         validate: (value){
+                           if (value == null || value.isEmpty) {
+                             return 'Please enter Email';
+                           }
+                         },
+                         functionchange: (value){
+                           email=value;
+                         },
+
+                         title: 'Email',
+                        hint: 'example@gmail.com',
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                       CustomFormField(
+                         validate: (value){
+                           if (value == null || value.isEmpty) {
+                             return 'Please enter password';
+                           }
+                         },
+                         functionchange: (value){
+                           password=value;
+                         },
+
+                         title: 'password',
+                        hint: '**********',
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                       CustomFormField(
+                         validate: (value){
+                           if (value == null || value.isEmpty) {
+                             return 'Please enter password';
+                           }
+                         },
+                         functionchange: (value){
+                           confirmPassword=value;
+                         },
+
+                         title: 'Confirm password',
+                        hint: '**********',
+                      ),
+
+
+                      //check box
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Row(
+                          children:  [
+                            Checkbox(
+                                value: isChecked,
+                                fillColor: MaterialStateColor.resolveWith((states) => secondColor),
+                                onChanged: (value){
+                                  setState(() {
+                                    isChecked=value!;
+                                  });
+
+                                }),
+                            const Text('Accept Terms of Use & Privacy Policy',style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+
+                            ),),
+                          ],
+                        ),
+                      ),
+
+
+
+                      //sign up button
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CustomButton(
+                        title: 'Sign Up',
+                        function: (){
+                          if(_formKey.currentState!.validate()){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Processing Data')),
+                            );
+                          }
+                          //print(name);
+                          //print(email);
+                          //print(password);
+                          //print(confirmPassword);
+                          signupVerify(email);
+
+                          Get.to(OtpScreen(email: email,name: name,password: password,));
+
+                         // signup(email,password,otp,name);
+                        },
+                      ),
+
+
+                      //sign in now
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:  [
+                          const Text('Do you have an account?',style: TextStyle(
+                              color: Colors.white
                           ),),
+                          TextButton(onPressed: (){
+                            Get.to(HomeScreen());
+                          },
+                          child: const Text('Sign in now',style: TextStyle(color: secondColor),))
                         ],
                       ),
-                    ),
 
 
 
-                    //sign up button
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    CustomButton(
-                      title: 'Sign Up',
-                      function: (){
-                        //print(name);
-                        //print(email);
-                        //print(password);
-                        //print(confirmPassword);
-                        signupVerify(email);
-
-                        Get.to(OtpScreen(email: email,name: name,password: password,));
-
-                       // signup(email,password,otp,name);
-                      },
-                    ),
-
-
-                    //sign in now
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        const Text('Do you have an account?',style: TextStyle(
-                            color: Colors.white
-                        ),),
-                        TextButton(onPressed: (){
-                          Get.to(HomeScreen());
-                        },
-                        child: const Text('Sign in now',style: TextStyle(color: secondColor),))
-                      ],
-                    ),
-
-
-
-
-
-
-
-
-
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

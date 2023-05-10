@@ -4,11 +4,13 @@ import 'custom_text.dart';
 class CustomOptionProfile extends StatelessWidget {
   final String title;
   final IconData icon;
+  var function;
 
 
-  const CustomOptionProfile({
+   CustomOptionProfile({
     required this.title,
     required this.icon,
+    this.function
   });
 
 
@@ -22,7 +24,7 @@ class CustomOptionProfile extends StatelessWidget {
         ),
         CustomText(title: title, fontSize: 16),
         Spacer(),
-        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios,color: Colors.white,)),
+        IconButton(onPressed: function, icon: Icon(Icons.arrow_forward_ios,color: Colors.white,)),
 
       ],
     );

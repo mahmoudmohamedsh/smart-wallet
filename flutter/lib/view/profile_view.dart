@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:orange_project/constant/constant.dart';
 
 import '../widget/custom_icon_button.dart';
 import '../widget/custom_option_profile.dart';
 import '../widget/custom_text.dart';
+import 'auth/add_child_view.dart';
 import 'layout_view.dart';
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -41,8 +44,8 @@ class _ProfileViewState extends State<ProfileView> {
                 height: 20,
               ),
 
-              // image and name and id
 
+              // image and name and id
               Center(
                 child: Column(
                   children: [
@@ -75,11 +78,15 @@ class _ProfileViewState extends State<ProfileView> {
 
               ),
                   CustomOptionProfile(
+                    function: (){
+                      Get.to(AddChildView());
+                    },
                   title: 'Add child',
                     icon: Icons.add_reaction_outlined,
 
                   ),
                   CustomOptionProfile(
+
                     title: 'Notification',
                     icon: Icons.notifications_active_outlined,
 

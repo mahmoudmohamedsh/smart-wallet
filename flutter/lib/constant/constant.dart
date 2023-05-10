@@ -6,5 +6,4 @@ const forthColor = Color.fromRGBO(237, 237, 237, 1);
 const hintFormColor = Color.fromRGBO(144, 144, 144, 1);
 
 
-
-const  url = 'http://192.168.1.102:8080';
+//const  url = 'http://192.168.1.102:8080';
