@@ -17,6 +17,10 @@ const paymentSchema = new Schema({
       type: Number,
       required: true
     },
+    amount: {
+      type: String,
+      default:"translation"
+    },
     date: {
       type: Date,
       default: Date.now

@@ -254,16 +254,28 @@ exports.handleReq = (req, res, next) => {
                 error.data = errors.array();
                 throw error;
             }
-            req.body.reqId;
-            req.body.isConfirm;
-            buyReq = result.requests;
-            result.requests.remove(ele => ele._id == req.body.reqId);
-            if (req.body.isConfirm)
-                res.status(200).json({ message: 'deleted' })
+            buyReq = result.requests.find(e => {  
+                console.log( e._id.equals(req.body.reqId)) 
+                return e._id.equals(req.body.reqId)
+            });
+            console.log(buyReq)
+            result.requests.filter(ele => {return !(ele._id.equals(req.body.reqId))} ); 
+            console.log(result.requests)
+            if (!req.body.isConfirm)
+                res.status(200).json({ message: 'request rejected and deleted' })
 
             return result.save();
         }).then(result => {
-            paymentModel
+            const paymentModelt = new paymentModel({
+                toUser:buyReq.toUser,
+                amount:buyReq.amount,
+                fromUser:buyReq.child,
+                notes:buyReq.notes,
+            })
+            return paymentModelt.save();
+        }).then(result => {
+            res.status(200).json({ message: 'successfully payed' })
+
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;

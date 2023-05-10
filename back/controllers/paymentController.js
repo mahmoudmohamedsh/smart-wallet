@@ -52,7 +52,7 @@ exports.pay = (req, res, next) => {
         }
 
     }).then(result => {
-        res.status(200).json({ message: result })
+        res.status(200).json({ message:currentuser.isUserChild.isChild ?"request added":"payment done",data:result })
 
     }).catch(err => {
         if (!err.statusCode) {

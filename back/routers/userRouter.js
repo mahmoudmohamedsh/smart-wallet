@@ -39,6 +39,8 @@ router.post('/signup', [
 router.post('/signin', userController.signin);
 //auth/getReq
 router.post('/getReq',isAuth, userController.getReq);
+//auth/handleReq
+router.post('/handleReq',isAuth, userController.handleReq);
 //auth/getChild
 router.post('/getChild',isAuth, userController.getChild);
 //auth/gethis
