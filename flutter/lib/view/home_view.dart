@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:orange_project/view/bill_view.dart';
 import '../constant/constant.dart';
+import '../view_model/user_view_model.dart';
 import '../widget/custom_item_list.dart';
 import '../widget/custom_recent_transaction.dart';
 import '../widget/custom_text.dart';
@@ -370,8 +371,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 ],
               ),
-
-
 
             ],
           ),

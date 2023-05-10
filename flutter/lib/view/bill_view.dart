@@ -49,7 +49,7 @@ class BillView extends StatelessWidget {
                       CustomText(title: '$title Bill', fontSize: 20,),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   // chart
@@ -128,7 +128,7 @@ class BillView extends StatelessWidget {
 
                   //fields
 
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Column(

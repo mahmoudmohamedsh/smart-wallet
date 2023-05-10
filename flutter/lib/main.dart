@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:orange_project/view/auth/add_child_view.dart';
 import 'package:orange_project/view/auth/login_screen.dart';
 import 'package:orange_project/view/auth/otp_screen.dart';
 import 'package:orange_project/view/profile_view.dart';

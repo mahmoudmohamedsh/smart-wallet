@@ -18,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
   bool isChecked = false;
   late String email,password;
   var response;
@@ -39,190 +40,210 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Login
-                    const Center(
-                      child:  Text('Login',style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                      ),),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-
-                     //fields
-                     CustomFormField(
-                       functionchange: (value){
-                         setState(() {
-                           email=value;
-                         });
-                       },
-
-                      title: 'Email',
-                      hint: 'example@gmail.com',
-
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                     CustomFormField(
-                       functionchange: (value){
-                         setState(() {
-                           password=value;
-                         });
-                       },
-                      title: 'password',
-                      hint: '**********',
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children:  [
-                          Checkbox(
-                              value: isChecked,
-                              fillColor: MaterialStateColor.resolveWith((states) => secondColor),
-                              onChanged: (value){
-                                setState(() {
-                                  isChecked=value!;
-                                });
-
-                              }),
-                          const Text('Remember me',style: TextStyle(
-                            fontSize: 15,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Login
+                      const Center(
+                        child:  Text('Login',style: TextStyle(
+                            fontSize: 30,
                             color: Colors.white,
-
-                          ),),
-                        ],
+                            fontWeight: FontWeight.bold
+                        ),),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 26,
-                    ),
+                      const SizedBox(
+                        height: 20,
+                      ),
 
 
-                    //login button
-                    CustomButton(
-                      title: 'login',
-                      function: ()async{
-                        print(email);
-                        print(password);
-                        response=await signIn(email,password);
-                        if(response != null){
-                          //print('wadyyyyy');
-                          print(response.toString());
-                          Get.to(LayoutView());
-                        }
-                        else{
-                          print('invaled user information');
-                        }
+                       //fields
+                       CustomFormField(
+                         validate: (value){
+                           if (value == null || value.isEmpty) {
+                             return 'Please enter Email';
+                           }
+                         },
+                         functionchange: (value){
+                           setState(() {
+                             email=value;
+                           });
+                         },
 
+                        title: 'Email',
+                        hint: 'example@gmail.com',
 
-                      },
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-
-
-                    //forget password
-                    Container(
-                      alignment: Alignment.topRight,
-                      child: const Text('Forget password?',style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-
-                      ),),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-
-                    // or option
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 1,
-                            color: thirdColor,
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text('OR',style: TextStyle(color:secondColor),),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 1,
-                            color: thirdColor,
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-
-
-                    //google option auth
-                    TextButton(
-                      onPressed: (){},
-                      child: Container(
-                        width: double.infinity,
-                        height: 57,
-                        decoration: BoxDecoration(
-                            color: thirdColor,
-                            borderRadius: BorderRadius.circular(10)
-                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                       CustomFormField(
+                         validate: (value){
+                           if (value == null || value.isEmpty) {
+                             return 'Please enter password';
+                           }
+                         },
+                         functionchange: (value){
+                           setState(() {
+                             password=value;
+                           });
+                         },
+                        title: 'password',
+                        hint: '**********',
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children:  [
-                            Container(
-                              width: 22,
-                              height: 22,
-                              child: Image.asset('assets/images/google.png'),
+                            Checkbox(
+                                value: isChecked,
+                                fillColor: MaterialStateColor.resolveWith((states) => secondColor),
+                                onChanged: (value){
+                                  setState(() {
+                                    isChecked=value!;
+                                  });
 
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text('Login with Google',style: TextStyle(color: Colors.white),)
+                                }),
+                            const Text('Remember me',style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+
+                            ),),
                           ],
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                      const SizedBox(
+                        height: 26,
+                      ),
 
 
-                    //create Account
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        const Text('Not register yet?',style: TextStyle(
-                            color: Colors.white
+
+                      //login button
+                      CustomButton(
+                        title: 'login',
+                        function: ()async{
+                          if(_formKey.currentState!.validate()){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Processing Data')),
+                            );
+                          }
+                          print(email);
+                          print(password);
+                          response=await signIn(email,password);
+                          if(response != null){
+                            //print('wadyyyyy');
+                            print(response.toString());
+                            Get.to(LayoutView());
+                          }
+                          else{
+                            print('invaled user information');
+                          }
+
+
+                        },
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+
+
+
+                      //forget password
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: const Text('Forget password?',style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+
                         ),),
-                        TextButton(onPressed: (){
-                          Get.to(RegisterScreen());
-                        }, child: const Text('Create an Account',style: TextStyle(color: secondColor),))
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+
+                      // or option
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 1,
+                              color: thirdColor,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text('OR',style: TextStyle(color:secondColor),),
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: 1,
+                              color: thirdColor,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+
+
+                      //google option auth
+                      TextButton(
+                        onPressed: (){},
+                        child: Container(
+                          width: double.infinity,
+                          height: 57,
+                          decoration: BoxDecoration(
+                              color: thirdColor,
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:  [
+                              Container(
+                                width: 22,
+                                height: 22,
+                                child: Image.asset('assets/images/google.png'),
+
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text('Login with Google',style: TextStyle(color: Colors.white),)
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+
+                      //create Account
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:  [
+                          const Text('Not register yet?',style: TextStyle(
+                              color: Colors.white
+                          ),),
+                          TextButton(onPressed: (){
+                            Get.to(RegisterScreen());
+                          }, child: const Text('Create an Account',style: TextStyle(color: secondColor),))
+                        ],
+                      ),
 
 
 
 
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

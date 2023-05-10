@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:orange_project/constant/constant.dart';
 import 'package:orange_project/view/auth/register_screen.dart';
+import 'package:orange_project/view/home_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../view_model/auth_view_model.dart';
 import '../../widget/custom_button.dart';
@@ -292,6 +293,8 @@ class OtpScreen extends StatelessWidget {
 
               //confirm button
 
+
+              //confirm button
               const SizedBox(
                 height: 94,
               ),
@@ -307,7 +310,7 @@ class OtpScreen extends StatelessWidget {
                     if(response != null){
                       //print('wadyyyyy');
                       print(response.toString());
-                      Get.to(LoginScreen());
+                      Get.to(HomeScreen());
                     }
                     else{
                       print('invaled otp information');
