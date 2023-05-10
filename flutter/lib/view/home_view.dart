@@ -17,22 +17,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   final data =[
     {
-      'study':'kids',
-      'student':50,
+      'category':'kids',
+      'money':50,
     },
     {
-      'study':'shopping',
-      'student':12.5,
+      'category':'shopping',
+      'money':12.5,
     },
     {
-      'study':'bills',
-      'student':20,
+      'category':'bills',
+      'money':20,
     },
     {
-      'study':'more',
-      'student':8.5,
+      'category':'more',
+      'money':8.5,
     },
 
   ];
@@ -115,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       DChartPie(
                         data:data.map((e) {
-                          return {'domain':e['study'] , 'measure' :e['student']};
+                          return {'domain':e['category'] , 'measure' :e['money']};
                         }).toList(),
                         fillColor: (pieData, index) {
                           switch(pieData['domain']){

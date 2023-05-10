@@ -4,5 +4,4 @@ class AppUrl{
   static var signupUrl = baseUrl + "/auth/signup";
   static var signupVerify = baseUrl + "/auth/signupVerify";
 
-  static var homeUrl = baseUrl + "api/unknown";
 }

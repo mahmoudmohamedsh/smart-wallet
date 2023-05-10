@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:orange_project/constant/constant.dart';
 import 'package:orange_project/view/auth/register_screen.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../view_model/auth_view_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_icon_button.dart';
@@ -15,6 +16,8 @@ class OtpScreen extends StatelessWidget {
   final String email;
   final String password;
   var otp;
+  var response;
+
 
   OtpScreen({
     required this.email,
@@ -69,209 +72,223 @@ class OtpScreen extends StatelessWidget {
               ),
 
               // otp fields
-              Form(child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      width: 49,
-                      height: 49,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: '0'),
-                          onSaved: (pin1){
-                          },
+              // Form(child: Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //         width: 49,
+              //         height: 49,
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: Center(
+              //           child: TextFormField(
+              //             decoration: InputDecoration(hintText: '0'),
+              //             onSaved: (pin1){
+              //             },
+              //
+              //             style:  const TextStyle(
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.black
+              //             ),
+              //             onChanged: (value){
+              //               if(value.length==1){
+              //                 FocusScope.of(context).nextFocus();
+              //               }
+              //             },
+              //             textAlign: TextAlign.center,
+              //             inputFormatters: [
+              //               LengthLimitingTextInputFormatter(1),
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ],
+              //           ),
+              //         )
+              //     ),
+              //     Container(
+              //         width: 49,
+              //         height: 49,
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: Center(
+              //           child: TextFormField(
+              //             decoration: InputDecoration(hintText: '0'),
+              //             onSaved: (pin2){
+              //             },
+              //
+              //             style:  const TextStyle(
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.black
+              //             ),
+              //             onChanged: (value){
+              //               if(value.length==1){
+              //                 FocusScope.of(context).nextFocus();
+              //               }
+              //             },
+              //             textAlign: TextAlign.center,
+              //             inputFormatters: [
+              //               LengthLimitingTextInputFormatter(1),
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ],
+              //           ),
+              //         )
+              //     ),
+              //     Container(
+              //         width: 49,
+              //         height: 49,
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: Center(
+              //           child: TextFormField(
+              //             decoration: InputDecoration(hintText: '0'),
+              //             onSaved: (pin3){
+              //             },
+              //
+              //             style:  const TextStyle(
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.black
+              //             ),
+              //             onChanged: (value){
+              //               if(value.length==1){
+              //                 FocusScope.of(context).nextFocus();
+              //               }
+              //             },
+              //             textAlign: TextAlign.center,
+              //             inputFormatters: [
+              //               LengthLimitingTextInputFormatter(1),
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ],
+              //           ),
+              //         )
+              //     ),
+              //     Container(
+              //         width: 49,
+              //         height: 49,
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: Center(
+              //           child: TextFormField(
+              //             decoration: InputDecoration(hintText: '0'),
+              //             onSaved: (pin4){
+              //             },
+              //
+              //             style:  const TextStyle(
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.black
+              //             ),
+              //             onChanged: (value){
+              //               if(value.length==1){
+              //                 FocusScope.of(context).nextFocus();
+              //               }
+              //             },
+              //             textAlign: TextAlign.center,
+              //             inputFormatters: [
+              //               LengthLimitingTextInputFormatter(1),
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ],
+              //           ),
+              //         )
+              //     ),
+              //     Container(
+              //         width: 49,
+              //         height: 49,
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: Center(
+              //           child: TextFormField(
+              //             decoration: InputDecoration(hintText: '0'),
+              //             onSaved: (pin5){
+              //             },
+              //
+              //             style:  const TextStyle(
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.black
+              //             ),
+              //             onChanged: (value){
+              //               if(value.length==1){
+              //                 FocusScope.of(context).nextFocus();
+              //               }
+              //             },
+              //             textAlign: TextAlign.center,
+              //             inputFormatters: [
+              //               LengthLimitingTextInputFormatter(1),
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ],
+              //           ),
+              //         )
+              //     ),
+              //     Container(
+              //         width: 49,
+              //         height: 49,
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: Center(
+              //           child: TextFormField(
+              //             decoration: InputDecoration(hintText: '0'),
+              //             onSaved: (pin7){
+              //             },
+              //
+              //             style:  const TextStyle(
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.black
+              //             ),
+              //             onChanged: (value){
+              //               if(value.length==1){
+              //                 FocusScope.of(context).nextFocus();
+              //               }
+              //             },
+              //             textAlign: TextAlign.center,
+              //             inputFormatters: [
+              //               LengthLimitingTextInputFormatter(1),
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ],
+              //           ),
+              //         )
+              //     ),
+              //   ],
+              // ), ),
 
-                          style:  const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                          onChanged: (value){
-                            if(value.length==1){
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: 49,
-                      height: 49,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: '0'),
-                          onSaved: (pin2){
-                          },
-
-                          style:  const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                          onChanged: (value){
-                            if(value.length==1){
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: 49,
-                      height: 49,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: '0'),
-                          onSaved: (pin3){
-                          },
-
-                          style:  const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                          onChanged: (value){
-                            if(value.length==1){
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: 49,
-                      height: 49,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: '0'),
-                          onSaved: (pin4){
-                          },
-
-                          style:  const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                          onChanged: (value){
-                            if(value.length==1){
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: 49,
-                      height: 49,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: '0'),
-                          onSaved: (pin5){
-                          },
-
-                          style:  const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                          onChanged: (value){
-                            if(value.length==1){
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: 49,
-                      height: 49,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: '0'),
-                          onSaved: (pin7){
-                          },
-
-                          style:  const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                          onChanged: (value){
-                            if(value.length==1){
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      )
-                  ),
-                ],
-              ), ),
-
-              TextFormField(
-                onChanged: (value){
-                  otp=value;
-                },
-                decoration: InputDecoration(
-                  hintText: 'enter',
-                  hintStyle: TextStyle(
+              Container(
+                child: PinCodeTextField(
+                  keyboardType: TextInputType.number,
+                  textStyle: TextStyle(
                     color: Colors.white
-                  )
-                ),
+                  ),
+                    appContext: context,
+                    length: 6,
+                    onChanged: (value){
+                      otp=value;
+                      print(otp);
+                    }),
               ),
+
+              // TextFormField(
+              //   onChanged: (value){
+              //     otp=value;
+              //   },
+              //   decoration: InputDecoration(
+              //     hintText: 'enter',
+              //     hintStyle: TextStyle(
+              //       color: Colors.white
+              //     )
+              //   ),
+              // ),
 
               //confirm button
 
@@ -281,12 +298,41 @@ class OtpScreen extends StatelessWidget {
               Center(
                 child: CustomButton(
                   title: 'Confirm button',
-                  function: (){
-                    signup(email,password,otp,name);
-                    print('succes');
-                    Get.to(LoginScreen());
+                  function: ()async{
+                    print(email);
+                    print(password);
+                    print(name);
+                    print(otp);
+                    response=await signup(email,password,otp,name);
+                    if(response != null){
+                      //print('wadyyyyy');
+                      print(response.toString());
+                      Get.to(LoginScreen());
+                    }
+                    else{
+                      print('invaled otp information');
+                    }
+
 
                   },
+                  // function: ()async{
+                  //   print('1');
+                  //
+                  //   response=await signup(email,password,otp,name);
+                  //   response[otp];
+                  //
+                  //   print('2');
+                  //   if(response?.data["otp"] == otp){
+                  //     print('3');
+                  //     print('success');
+                  //     signup(email,password,otp,name);
+                  //     print('4');
+                  //     Get.to(LoginScreen());
+                  //   }
+                  //   else{
+                  //     print('invaled otp ');
+                  //   }
+                  // },
                 ),
               ),
 

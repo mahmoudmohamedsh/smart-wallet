@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:orange_project/view/bill_view.dart';
 
 import '../constant/constant.dart';
+import 'profile_view.dart';
+import 'histroy_view.dart';
+import 'transfar_view.dart';
 import 'home_view.dart';
 class LayoutView extends StatefulWidget {
   @override
@@ -13,7 +16,13 @@ class _LayoutViewState extends State<LayoutView> {
 
 List<Widget>screens=[
   HomeScreen(),
-  BillView(title: 'bill'),
+
+  TransferView(),
+
+  HistoryView(),
+
+  ProfileView(),
+
 ];
 
   @override
@@ -40,7 +49,7 @@ List<Widget>screens=[
           ),
           BottomNavigationBarItem(
               icon:Icon(Icons.credit_card),
-              label: 'card'
+              label: 'Transfer'
           ),
           BottomNavigationBarItem(
               icon:Icon(Icons.history_outlined),
