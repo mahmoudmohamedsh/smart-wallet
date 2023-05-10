@@ -254,23 +254,26 @@ exports.handleReq = (req, res, next) => {
                 error.data = errors.array();
                 throw error;
             }
-            buyReq = result.requests.find(e => {  
-                console.log( e._id.equals(req.body.reqId)) 
+            buyReq = result.requests.find(e => {
+                console.log(e._id.equals(req.body.reqId))
                 return e._id.equals(req.body.reqId)
             });
             console.log(buyReq)
-            result.requests.filter(ele => {return !(ele._id.equals(req.body.reqId))} ); 
-            console.log(result.requests)
+            const objWithIdIndex = result.requests.findIndex((obj) => obj._id.equals(req.body.reqId));
+
+            if (objWithIdIndex > -1) {
+                result.requests.splice(objWithIdIndex, 1);
+            }
             if (!req.body.isConfirm)
                 res.status(200).json({ message: 'request rejected and deleted' })
 
             return result.save();
         }).then(result => {
             const paymentModelt = new paymentModel({
-                toUser:buyReq.toUser,
-                amount:buyReq.amount,
-                fromUser:buyReq.child,
-                notes:buyReq.notes,
+                toUser: buyReq.toUser,
+                amount: buyReq.amount,
+                fromUser: buyReq.child,
+                notes: buyReq.notes,
             })
             return paymentModelt.save();
         }).then(result => {
