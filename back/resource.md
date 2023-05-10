@@ -85,3 +85,9 @@ https://stackoverflow.com/questions/7382207/mongooses-find-method-with-or-condit
 ---
 
 https://stackoverflow.com/questions/12096262/how-to-protect-the-password-field-in-mongoose-mongodb-so-it-wont-return-in-a-qu
+
+
+
+---
+
+https://www.pluralsight.com/guides/create-docker-images-docker-hub
