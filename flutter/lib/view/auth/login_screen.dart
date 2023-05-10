@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:orange_project/view/auth/register_screen.dart';
 import 'package:orange_project/view/home_view.dart';
+import 'package:orange_project/view/layout_view.dart';
 import 'package:orange_project/view_model/auth_view_model.dart';
 import '../../constant/constant.dart';
 import '../../widget/custom_button.dart';
@@ -117,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if(response != null){
                           //print('wadyyyyy');
                           print(response.toString());
-                          Get.to(HomeScreen());
+                          Get.to(LayoutView());
                         }
                         else{
                           print('invaled user information');

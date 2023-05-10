@@ -40,6 +40,9 @@ dependencies:
   fl_chart: 0.62.0
   d_chart: ^2.2.11
   dio: ^5.1.1
+  pin_code_fields: ^7.4.0
+  syncfusion_flutter_charts: ^21.2.4
+
 
 
 

@@ -3,6 +3,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:orange_project/view/auth/otp_screen.dart';
 import 'package:orange_project/view/home_view.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 import '../../constant/constant.dart';
 import '../../view_model/auth_view_model.dart';
@@ -160,6 +162,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: const Text('Sign in now',style: TextStyle(color: secondColor),))
                       ],
                     ),
+
+
+
+
+
 
 
 
