@@ -107,7 +107,7 @@ exports.signin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     let loadedUser;
-    User.findOne({ email: email })
+    User.findOne({ email: email }).select("+password")
         .then(user => {
             if (!user) {
                 const error = new Error('error, check your email and password');
@@ -231,32 +231,59 @@ exports.getChild = (req, res, next) => {
 }
 
 exports.getUserHis = (req, res, next) => {
-    paymentModel.find().or([{toUser:req.userId},{fromUser:req.userId}])
-    .then(result=>{
-        res.status(200).json({message:"success",data:result});
-    })
-    .catch(err=>{
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
-    })
+    paymentModel.find().or([{ toUser: req.userId }, { fromUser: req.userId }])
+        .then(result => {
+            res.status(200).json({ message: "success", data: result });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
 }
 
-exports.handleReq = (req, res, next) => { 
+//note done
+exports.handleReq = (req, res, next) => {
+    let buyReq;
     userModel.findById(req.userId)
-    .then(result => {
-        if (!result) {
+        .then(result => {
+            if (!result) {
+                const error = new Error('auth faild');
+                error.statuscode = 422;
+                error.data = errors.array();
+                throw error;
+            }
+            req.body.reqId;
+            req.body.isConfirm;
+            buyReq = result.requests;
+            result.requests.remove(ele => ele._id == req.body.reqId);
+            if (req.body.isConfirm)
+                res.status(200).json({ message: 'deleted' })
 
-            const error = new Error('auth faild');
-            error.statuscode = 422;
-            error.data = errors.array();
-            throw error;
+            return result.save();
+        }).then(result => {
+            paymentModel
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
 
-        }
-    }).catch(err=>{
-        
-    })
+}
+
+exports.getUserData = (req, res, next) => {
+
+    userModel.findById(req.userId)
+        .then(result => {
+            res.status(200).json({ message: 'success', data: result })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
 
 }
 
